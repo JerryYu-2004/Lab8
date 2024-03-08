@@ -33,9 +33,9 @@ public class CustomListTest {
     @Test
     public void addCityTest(){
         list = MockCityList();
-        int listSize = list.getCount();
+        int listSize = list.countCities();
         list.addCity(new City("Estevan", "SK"));
-        assertEquals(list.getCount(),listSize + 1);
+        assertEquals(list.countCities(),listSize + 1);
     }
 
     @Test
@@ -54,6 +54,28 @@ public class CustomListTest {
         Assertions.assertFalse(list.hasCity(newCity), "The cityList should not have the new city before it is added.");
 
 
+    }
+
+    @Test
+    void testDeleteCity() {
+        list = MockCityList();
+        City existingCity = new City("Edmonton", "Alberta");
+
+        list.addCity(existingCity);
+        Assertions.assertTrue(list.hasCity(existingCity));
+
+        list.deleteCity(existingCity);
+        Assertions.assertFalse(list.hasCity(existingCity));
+    }
+
+    @Test
+    void testDeleteException() {
+        list = MockCityList();
+        City nonExistentCity = new City("Calgary", "Alberta");
+
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            list.deleteCity(nonExistentCity);
+        }, "Deleting a non-existent city should throw IllegalArgumentException");
     }
 
 
