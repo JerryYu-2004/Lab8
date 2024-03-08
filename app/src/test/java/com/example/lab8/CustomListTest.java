@@ -78,6 +78,22 @@ public class CustomListTest {
         }, "Deleting a non-existent city should throw IllegalArgumentException");
     }
 
+    @Test
+    void testCountCities() {
+        list = MockCityList();
+        assertEquals(0, list.countCities());
 
+        City newCity = new City("Edmonton", "Alberta");
+        list.addCity(newCity);
+        assertEquals(1, list.countCities(),"CityList should contain 1 city");
+
+        list.addCity(new City("Calgary", "Alberta"));
+        list.addCity(new City("Vancouver", "British Columbia"));
+        assertEquals(3, list.countCities(), "CityList should contain 3 cities");
+
+        list.deleteCity(newCity);
+        assertEquals(2, list.countCities(), "CityList should contain 2 cities after deleting one");
+
+    }
 
 }
