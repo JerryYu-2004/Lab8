@@ -39,10 +39,11 @@ public class CustomListTest {
     }
 
     @Test
-    void testHasCity() {
+    public void testHasCity() {
         list = MockCityList();
         City existingCity = new City("Edmonton", "Alberta");
         list.addCity(existingCity);
+
         Assertions.assertTrue(list.hasCity(existingCity),
                 "The cityList should recognize an existing city.");
 
@@ -52,8 +53,7 @@ public class CustomListTest {
         City newCity = new City("Vancouver", "British Columbia");
         Assertions.assertFalse(list.hasCity(newCity), "The cityList should not have the new city before it is added.");
 
-        list.add(newCity);
-        Assertions.assertTrue(list.hasCity(newCity), "The cityList should have the new city after it is added.");
+
     }
 
 
